@@ -3,8 +3,8 @@
 **PROG101 Principles of Programming Logic and Design - Assignment 1**
 Limkokwing University of Creative Technology, Sierra Leone Campus
 
-- Student: [YOUR FULL NAME]
-- Student ID: [YOUR STUDENT ID]
+- Student: [ARMANI C BECKLEY]
+- Student ID: [905006175]
 - Examiner: Elijah Fullah
 
 ## Overview
