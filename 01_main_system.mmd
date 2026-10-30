@@ -1,0 +1,39 @@
+flowchart TD
+    s(["Start"])
+    l["Load crop calendar,<br/>market and price data"]
+    m[/"Display main menu:<br/>1 Register  2 Crop Advice<br/>3 Best Market  4 Sell or Store<br/>5 Exit"/]
+    i[/"Input user choice"/]
+    v{"Is choice<br/>between 1 and 5?"}
+    e[/"Display 'Invalid choice'"/]
+    c1{"choice = 1?"}
+    c2{"choice = 2?"}
+    c3{"choice = 3?"}
+    c4{"choice = 4?"}
+    p1[["CALL registerFarmer()"]]
+    p2[["CALL getCropAdvice()"]]
+    p3[["CALL showBestMarket()"]]
+    p4[["CALL sellOrStore()"]]
+    b[/"Display goodbye message"/]
+    a(("A"))
+    x(["End"])
+    s --> l
+    l --> m
+    m --> i
+    i --> v
+    v -->|Yes| c1
+    v -->|No| e
+    e --> a
+    c1 -->|Yes| p1
+    c1 -->|No| c2
+    c2 -->|Yes| p2
+    c2 -->|No| c3
+    c3 -->|Yes| p3
+    c3 -->|No| c4
+    c4 -->|Yes| p4
+    c4 -->|No (5)| b
+    p1 --> a
+    p2 --> a
+    p3 --> a
+    p4 --> a
+    a --> m
+    b --> x

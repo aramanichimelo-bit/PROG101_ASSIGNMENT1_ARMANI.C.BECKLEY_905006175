@@ -1,0 +1,25 @@
+flowchart TD
+    s(["Start getBestNetPrice(cropName, district)"])
+    p0["bestNet = 0 ; lastBestMarket = '' ; i = 1"]
+    d1{"i <= totalMarkets?"}
+    p1["price = PRICE[crop][i]"]
+    d2{"price > 0?"}
+    p2["distance = getDistance(district, MARKET_NAME[i])<br/>netPrice = price - (distance x TRANSPORT_RATE)"]
+    d3{"netPrice > bestNet?"}
+    p3["bestNet = netPrice<br/>lastBestMarket = MARKET_NAME[i]"]
+    p4["i = i + 1"]
+    r["RETURN bestNet"]
+    x(["End"])
+    s --> p0
+    p0 --> d1
+    d1 -->|Yes| p1
+    p1 --> d2
+    d2 -->|Yes| p2
+    d2 -->|No| p4
+    p2 --> d3
+    d3 -->|Yes| p3
+    d3 -->|No| p4
+    p3 --> p4
+    p4 --> d1
+    d1 -->|No| r
+    r --> x

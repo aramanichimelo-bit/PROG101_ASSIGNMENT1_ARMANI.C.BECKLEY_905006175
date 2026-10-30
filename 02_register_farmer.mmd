@@ -1,0 +1,40 @@
+flowchart TD
+    s(["Start registerFarmer()"])
+    a0["attempts = 0"]
+    i1[/"Input phoneNumber"/]
+    d1{"Length = PHONE_LENGTH<br/>AND all digits?"}
+    a1["attempts = attempts + 1"]
+    d2{"attempts >=<br/>MAX_ATTEMPTS?"}
+    o1[/"Display 'Too many invalid<br/>attempts. Try later.'"/]
+    d3{"phoneNumber already<br/>registered?"}
+    o2[/"Display 'Welcome back,'<br/>+ farmerName"/]
+    i2[/"Input farmerName"/]
+    i3[/"Input district"/]
+    d4{"district in<br/>DISTRICT_LIST?"}
+    o3[/"Display<br/>'Unknown district'"/]
+    l1["FOR each crop in CROP_LIST:<br/>show number and name"]
+    i4[/"Input mainCrop number"/]
+    p1["Save farmer record<br/>(phone, name, district, crop)"]
+    o4[/"Display<br/>'Registration successful'"/]
+    x(["End / Return"])
+    s --> a0
+    a0 --> i1
+    i1 --> d1
+    d1 -->|Yes| d3
+    d1 -->|No| a1
+    a1 --> d2
+    d2 -->|Yes| o1
+    d2 -->|No| i1
+    o1 --> x
+    d3 -->|Yes| o2
+    d3 -->|No| i2
+    o2 --> x
+    i2 --> i3
+    i3 --> d4
+    d4 -->|Yes| l1
+    d4 -->|No| o3
+    o3 --> i3
+    l1 --> i4
+    i4 --> p1
+    p1 --> o4
+    o4 --> x

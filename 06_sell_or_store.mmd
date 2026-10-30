@@ -1,0 +1,31 @@
+flowchart TD
+    s(["Start sellOrStore()"])
+    i1[/"Input cropName, district,<br/>quantityBags, hasStorage (Yes/No)"/]
+    p1[["currentNet = getBestNetPrice(<br/>cropName, district)"]]
+    p2["expectedPrice = getExpectedPrice(cropName)"]
+    d1{"Is crop<br/>perishable?"}
+    r1["advice = 'SELL NOW<br/>(crop spoils quickly)'"]
+    d2{"hasStorage = TRUE AND<br/>expectedPrice >= currentNet<br/>x (1 + PRICE_MARGIN)?"}
+    r2["advice = 'STORE and sell<br/>next month'"]
+    r3["advice = 'SELL NOW at<br/>best market'"]
+    a(("C"))
+    d3{"quantityBags >=<br/>BULK_THRESHOLD?"}
+    p3["Add tip: 'Join a cooperative<br/>to sell in bulk'"]
+    o1[/"Display advice, lastBestMarket,<br/>currentNet and expectedPrice"/]
+    x(["End / Return"])
+    s --> i1
+    i1 --> p1
+    p1 --> p2
+    p2 --> d1
+    d1 -->|Yes| r1
+    d1 -->|No| d2
+    d2 -->|Yes| r2
+    d2 -->|No| r3
+    r1 --> a
+    r2 --> a
+    r3 --> a
+    a --> d3
+    d3 -->|Yes| p3
+    d3 -->|No| o1
+    p3 --> o1
+    o1 --> x

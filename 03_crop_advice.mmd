@@ -1,0 +1,44 @@
+flowchart TD
+    s(["Start getCropAdvice()"])
+    i1[/"Input cropName"/]
+    p0["i = 1 ; found = FALSE"]
+    d1{"i <= totalCrops?"}
+    d2{"CROP_NAME[i]<br/>= cropName?"}
+    p1["i = i + 1"]
+    p2["found = TRUE ; index = i"]
+    d3{"found = TRUE?"}
+    o1[/"Display<br/>'Crop not supported'"/]
+    p3["currentMonth = getCurrentMonth()"]
+    d4{"currentMonth >= PLANT_START<br/>AND currentMonth <= PLANT_END?"}
+    o2[/"Display 'PLANT NOW' + tips"/]
+    d5{"currentMonth <<br/>PLANT_START?"}
+    o3[/"Display 'Prepare land; plant in<br/>(PLANT_START - currentMonth) months'"/]
+    o4[/"Display 'Planting window closed.<br/>Focus on weeding and care'"/]
+    a(("B"))
+    d6{"currentMonth in<br/>harvest window?"}
+    o5[/"Display harvest and<br/>storage tip"/]
+    x(["End / Return"])
+    s --> i1
+    i1 --> p0
+    p0 --> d1
+    d1 -->|Yes| d2
+    d1 -->|No| d3
+    d2 -->|Yes| p2
+    d2 -->|No| p1
+    p1 --> d1
+    p2 --> d3
+    d3 -->|Yes| p3
+    d3 -->|No| o1
+    o1 --> x
+    p3 --> d4
+    d4 -->|Yes| o2
+    d4 -->|No| d5
+    d5 -->|Yes| o3
+    d5 -->|No| o4
+    o2 --> a
+    o3 --> a
+    o4 --> a
+    a --> d6
+    d6 -->|Yes| o5
+    d6 -->|No| x
+    o5 --> x

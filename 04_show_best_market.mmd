@@ -1,0 +1,15 @@
+flowchart TD
+    s(["Start showBestMarket()"])
+    i1[/"Input cropName and district"/]
+    p1[["bestNet = getBestNetPrice(cropName, district)"]]
+    d1{"lastBestMarket<br/>is empty?"}
+    o1[/"Display<br/>'No price data available'"/]
+    o2[/"Display lastBestMarket<br/>and bestNet per bag"/]
+    x(["End / Return"])
+    s --> i1
+    i1 --> p1
+    p1 --> d1
+    d1 -->|Yes| o1
+    d1 -->|No| o2
+    o1 --> x
+    o2 --> x
